@@ -1,26 +1,26 @@
-# class Solution:
-#     def singleNonDuplicate(self, nums: list[int]) -> int:
-#         left = 0
-#         right = len(nums) - 1
-
-#         while left < right:
-#             mid = (left + right) // 2
-
-#             if mid % 2 == 1:
-#                 mid -= 1
-
-#             if nums[mid] == nums[mid + 1]:
-#                 left = mid + 2
-#             else:
-#                 right = mid
-
-#         return nums[left]
-from collections import Counter
-
 class Solution:
     def singleNonDuplicate(self, nums: list[int]) -> int:
-        freq = Counter(nums)
+        left = 0
+        right = len(nums) - 1
 
-        for num, count in freq.items():
-            if count == 1:
-                return num
+        while left < right:
+            mid = (left + right) // 2
+
+            if mid % 2 == 1:
+                mid -= 1
+
+            if nums[mid] == nums[mid + 1]:
+                left = mid + 2
+            else:
+                right = mid
+
+        return nums[left]
+# from collections import Counter
+
+# class Solution:
+#     def singleNonDuplicate(self, nums: list[int]) -> int:
+#         freq = Counter(nums)
+
+#         for num, count in freq.items():
+#             if count == 1:
+#                 return num
