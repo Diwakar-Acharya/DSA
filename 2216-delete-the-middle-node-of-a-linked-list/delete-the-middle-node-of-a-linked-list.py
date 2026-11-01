@@ -5,8 +5,8 @@
 #         self.next = next
 class Solution:
     def deleteMiddle(self, head: ListNode | None) -> ListNode | None:
-        if head.next == None:
-            return None
+        if(not head or not head.next):
+            return None;
         dummy = ListNode(0,head)
         temp = dummy
 
