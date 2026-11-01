@@ -6,7 +6,7 @@
 class Solution:
     def deleteMiddle(self, head: ListNode | None) -> ListNode | None:
         if(not head or not head.next):
-            return None;
+            return None
         dummy = ListNode(0,head)
         temp = dummy
 
