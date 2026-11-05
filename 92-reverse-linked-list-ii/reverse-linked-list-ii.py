@@ -3,25 +3,69 @@
 #     def __init__(self, val=0, next=None):
 #         self.val = val
 #         self.next = next
+
+
+# class Solution:
+#     def reverseBetween(self, head, left, right):
+#         dummy = ListNode(0)
+#         dummy.next = head
+
+#         prev = dummy
+
+#         # Move prev to the node before left
+#         for _ in range(left - 1):
+#             prev = prev.next
+
+#         curr = prev.next
+
+#         for i in range(right - left):
+#             nex = curr.next
+#             for i in range(right - left - i):
+#                 curr.val, nex.val = nex.val, curr.val
+#                 nex = nex.next
+            
+#             curr = curr.next
+
+#         return dummy.next
+
+
 class Solution:
     def reverseBetween(self, head, left, right):
-        dummy = ListNode(0)
-        dummy.next = head
 
-        prev = dummy
+        curr = head
+        prev = None
 
-        # Move prev to the node before left
+        # Reach left position
         for _ in range(left - 1):
-            prev = prev.next
+            curr = curr.next
 
-        curr = prev.next
+        left_node = curr
 
-        # Reverse the sublist using head insertion
+        # Reach right position
         for _ in range(right - left):
-            nex = curr.next
+            curr = curr.next
 
-            curr.next = nex.next
-            nex.next = prev.next
-            prev.next = nex
+        right_node = curr
 
-        return dummy.next
+        # Swap values moving inward
+        while left_node != right_node:
+            if left_node.next == right_node:
+                break
+
+            left_node.val, right_node.val = right_node.val, left_node.val
+
+            left_node = left_node.next
+
+            # Find previous node of right_node
+            temp = head
+            while temp.next != right_node:
+                temp = temp.next
+
+            right_node = temp
+
+        if left_node == right_node:
+            return head
+
+        left_node.val, right_node.val = right_node.val, left_node.val
+
+        return head
