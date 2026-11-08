@@ -1,18 +1,15 @@
 class Solution:
     def modifiedList(self, nums: List[int], head: Optional[ListNode]) -> Optional[ListNode]:
-        dummy = ListNode(0, head)
-
-        remove = set(nums)
-
-        prev = dummy
-        curr = head
-
-        while curr:
-            if curr.val in remove:
-                prev.next = curr.next
+        dummy=ListNode(0)
+        dummy.next=head
+        nums=set(nums)
+        prev=dummy
+        current=head
+        while current:
+            if current.val in nums:
+                prev.next=current.next
+                current=current.next
             else:
-                prev = curr
-
-            curr = curr.next
-
+                prev=current
+                current=current.next
         return dummy.next
