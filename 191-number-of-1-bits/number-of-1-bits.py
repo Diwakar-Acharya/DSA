@@ -10,4 +10,3 @@ class Solution:
 #         count = bin(n).count('1')
         return count
 
-
